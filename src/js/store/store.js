@@ -30,12 +30,12 @@ const getState = scope => {
 			},
 			setDone: (index, element) => {
 				let store = scope.state.store; //copy store into temp var
-				store.list[element].done = true; //define new item and push into store copy
+				store.list[index].done = true; //define new item and push into store copy
 				scope.setState({ store }); //Set the store from the copy
 			},
 			unsetDone: (index, element) => {
 				let store = scope.state.store; //copy store into temp var
-				store.list[element].done = false; //define new item and push into store copy
+				store.list[index].done = false; //define new item and push into store copy
 				scope.setState({ store }); //Set the store from the copy
 			}
 		}
