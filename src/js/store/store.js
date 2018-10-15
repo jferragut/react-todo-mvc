@@ -1,24 +1,40 @@
 const getState = scope => {
 	return {
+		//create an object for the store state
 		store: {
-			demo: [
+			list: [
 				{
-					title: "FIRST",
-					background: "white",
-					initial: "white"
+					todo: "Brush your teeth",
+					done: false
 				},
 				{
-					title: "SECOND",
-					background: "white",
-					initial: "white"
+					todo: "Walk the dog",
+					done: false
 				}
 			]
 		},
+		//create actions that will be used
 		actions: {
-			changeColor: (element, color) => {
-				let store = scope.state.store;
-				store.demo[element].background = color;
-				scope.setState({ store });
+			addTodo: (item, element) => {
+				let store = scope.state.store; //copy store into temp var
+				store.list.push({
+					todo: item,
+					done: false
+				}); //define new item and push into store copy
+				scope.setState({ store }); //Set the store from the copy
+			},
+			deleteTodo: (item, index, element) => {
+				let store = scope.state.store; //copy store into temp var
+				let newList = store.list.splice(index, 1); //define new item and push into store copy
+				scope.setState({ newList }); //Set the store from the copy
+			},
+			setDone: (item, index, element) => {
+				let store = scope.state.store; //copy store into temp var
+				store.list[index]({
+					todo: item.todo,
+					done: true
+				}); //define new item and push into store copy
+				scope.setState({ store }); //Set the store from the copy
 			}
 		}
 	};

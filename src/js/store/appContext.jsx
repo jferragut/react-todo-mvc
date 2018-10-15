@@ -3,6 +3,7 @@ import getState from "./store.js";
 
 export const Context = React.createContext(null);
 
+// This entire section wraps the store
 const Store = PassedComponent => {
 	class StoreWrapper extends React.Component {
 		constructor(props) {
@@ -16,6 +17,7 @@ const Store = PassedComponent => {
 		}
 
 		render() {
+			/* When the value prop changes, component re-renders */
 			return (
 				<Context.Provider value={this.state}>
 					<PassedComponent {...this.props} />
