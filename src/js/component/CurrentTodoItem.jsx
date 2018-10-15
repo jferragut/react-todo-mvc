@@ -1,6 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { Context } from "../store/appContext.jsx";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 export class CurrentTodoItem extends React.Component {
 	constructor(props) {
@@ -27,10 +28,7 @@ export class CurrentTodoItem extends React.Component {
 									key={index}
 									onClick={(item, index) => actions.setDone}>
 									{item.todo}
-									<span
-										className="glyphicon glyphicon-trash deleteIcon"
-										aria-hidden="true"
-									/>
+									<FontAwesomeIcon icon="faTrashAlt" />
 								</li>
 							);
 						});

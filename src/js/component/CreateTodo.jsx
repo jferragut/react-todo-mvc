@@ -19,7 +19,7 @@ export class CreateTodo extends React.Component {
 					};
 
 					return (
-						<form onSubmit={createNewTodo}>
+						<form onSubmit={createNewTodo} className="mb-5">
 							<input
 								className="form-control"
 								type="text"
