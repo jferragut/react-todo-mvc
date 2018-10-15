@@ -23,17 +23,19 @@ const getState = scope => {
 				}); //define new item and push into store copy
 				scope.setState({ store }); //Set the store from the copy
 			},
-			deleteTodo: (item, index, element) => {
+			deleteTodo: (index, element) => {
 				let store = scope.state.store; //copy store into temp var
-				let newList = store.list.splice(index, 1); //define new item and push into store copy
-				scope.setState({ newList }); //Set the store from the copy
+				store.list.splice(index, 1); //splice item out of array
+				scope.setState({ store }); //Set the store
 			},
-			setDone: (item, index, element) => {
+			setDone: (index, element) => {
 				let store = scope.state.store; //copy store into temp var
-				store.list[index]({
-					todo: item.todo,
-					done: true
-				}); //define new item and push into store copy
+				store.list[element].done = true; //define new item and push into store copy
+				scope.setState({ store }); //Set the store from the copy
+			},
+			unsetDone: (index, element) => {
+				let store = scope.state.store; //copy store into temp var
+				store.list[element].done = false; //define new item and push into store copy
 				scope.setState({ store }); //Set the store from the copy
 			}
 		}

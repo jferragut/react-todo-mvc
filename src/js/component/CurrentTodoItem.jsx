@@ -8,27 +8,54 @@ export class CurrentTodoItem extends React.Component {
 		super(props);
 	}
 
-	classList = ({ item }) => {
-		let classes = "todoItem";
-		if (item.done === true) {
-			classes += " done";
-		}
-		return classes;
-	};
-
 	render() {
 		return (
 			<ul className="list-unstyled">
 				<Context.Consumer>
 					{({ store, actions }) => {
 						return store.list.map((item, index) => {
+							var classList = item => {
+								var classes = "todoItem";
+								if (item.done == true) {
+									classes += " done";
+								}
+								return classes;
+							};
+
+							var doneToggle = item => {
+								if (item.done) {
+									return (
+										<input
+											type="checkbox"
+											value={item.todo}
+											onClick={actions.unsetDone}
+											checked="true"
+										/>
+									);
+								} else {
+									return (
+										<input
+											type="checkbox"
+											value={item.todo}
+											onClick={actions.setDone}
+											checked="false"
+										/>
+									);
+								}
+							};
+
 							return (
 								<li
-									className={this.classList}
+									className={classList}
 									key={index}
-									onClick={(item, index) => actions.setDone}>
+									onClick={actions.setDone}>
+									<span>{doneToggle}</span>
 									{item.todo}
-									<FontAwesomeIcon icon="faTrashAlt" />
+									<FontAwesomeIcon
+										icon="trash-alt"
+										className="float-right"
+										onClick={actions.deleteTodo}
+									/>
 								</li>
 							);
 						});
