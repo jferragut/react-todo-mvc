@@ -21,7 +21,7 @@ li:hover .fa-trash-alt{opacity: 1;}
     text-decoration-color: red;
 }
 
-/* The container */
+
 li .container {
     display: block;
     position: relative;
@@ -35,7 +35,7 @@ li .container {
     user-select: none;
 }
 
-/* Hide the browser's default checkbox */
+
 li .container input {
     position: absolute;
     opacity: 0;
@@ -44,7 +44,7 @@ li .container input {
     width: 0;
 }
 
-/* Create a custom checkbox */
+
 .checkmark {
     position: absolute;
     top: 0;
@@ -54,30 +54,30 @@ li .container input {
     background-color: #eee;
 }
 
-/* On mouse-over, add a grey background color */
-li .container:hover input[type='checkbox'] ~ .checkmark
-.itemText:hover ~ div.container input[type='checkbox'] ~ .checkmark {
+
+li .container:hover input[type='checkbox'] ~ .checkmark,
+.itemText:hover + li.container > .checkmark {
     background-color: #ccc;
 }
 
-/* When the checkbox is checked, add a blue background */
+
 li .container input[type='checkbox']:checked ~ .checkmark {
     background-color: #2196F3;
 }
 
-/* Create the checkmark/indicator (hidden when not checked) */
+
 .checkmark:after {
     content: "";
     position: absolute;
     display: none;
 }
 
-/* Show the checkmark when checked */
+
 li .container input[type='checkbox']:checked ~ .checkmark:after {
     display: block;
 }
 
-/* Style the checkmark/indicator */
+
 li .container .checkmark:after {
     left: 9px;
     top: 5px;
