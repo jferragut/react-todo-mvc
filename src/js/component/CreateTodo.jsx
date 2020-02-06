@@ -1,34 +1,21 @@
-import React from "react";
-import PropTypes from "prop-types";
+import React, { useContext } from "react";
 import { Context } from "../store/appContext.jsx";
 
-export class CreateTodo extends React.Component {
-	constructor(props) {
-		super(props);
-		this.newTodo = React.createRef();
-	}
+export const CreateTodo = () => {
+	const { store, actions } = useContext(Context);
+	const newTodo = React.createRef();
 
-	render() {
-		return (
-			<Context.Consumer>
-				{({ store, actions }) => {
-					let createNewTodo = e => {
-						e.preventDefault();
-						actions.addTodo(this.newTodo.current.value);
-						this.newTodo.current.value = "";
-					};
+	const createNewTodo = e => {
+		e.preventDefault();
+		actions.addTodo(newTodo.current.value);
+		newTodo.current.value = "";
+	};
 
-					return (
-						<form onSubmit={createNewTodo} className="mb-5">
-							<input
-								className="form-control"
-								type="text"
-								ref={this.newTodo}
-							/>
-						</form>
-					);
-				}}
-			</Context.Consumer>
-		);
-	}
-}
+	return (
+		<div>
+			<form onSubmit={createNewTodo} className="mb-5">
+				<input className="form-control" type="text" ref={newTodo} />
+			</form>
+		</div>
+	);
+};

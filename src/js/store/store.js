@@ -1,6 +1,5 @@
-const getState = scope => {
+const getState = ({ getStore, getActions, setStore }) => {
 	return {
-		//create an object for the store state
 		store: {
 			list: [
 				{
@@ -13,30 +12,29 @@ const getState = scope => {
 				}
 			]
 		},
-		//create actions that will be used
 		actions: {
 			addTodo: (item, element) => {
-				let store = scope.state.store; //copy store into temp var
+				let store = getStore();
 				store.list.push({
 					todo: item,
 					done: false
-				}); //define new item and push into store copy
-				scope.setState({ store }); //Set the store from the copy
+				});
+				setStore({ store });
 			},
 			deleteTodo: (index, element) => {
-				let store = scope.state.store; //copy store into temp var
-				store.list.splice(index, 1); //splice item out of array
-				scope.setState({ store }); //Set the store
+				let store = getStore();
+				store.list.splice(index, 1);
+				setStore({ store });
 			},
 			setDone: (index, element) => {
-				let store = scope.state.store; //copy store into temp var
-				store.list[index].done = true; //define new item and push into store copy
-				scope.setState({ store }); //Set the store from the copy
+				let store = getStore();
+				store.list[index].done = true;
+				setStore({ store });
 			},
 			unsetDone: (index, element) => {
-				let store = scope.state.store; //copy store into temp var
-				store.list[index].done = false; //define new item and push into store copy
-				scope.setState({ store }); //Set the store from the copy
+				let store = getStore();
+				store.list[index].done = false;
+				setStore({ store });
 			}
 		}
 	};
