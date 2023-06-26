@@ -1,25 +1,40 @@
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import "./styles/App.css";
 
-function App() {
+import { Main } from "./views/main.jsx";
+
+import { Navbar } from "./components/navbar.jsx";
+import { Footer } from "./components/footer.jsx";
+
+import { library } from "@fortawesome/fontawesome-svg-core";
+import { faTrashAlt } from "@fortawesome/free-solid-svg-icons";
+import { StoreProvider } from "./store/storeContext.js";
+library.add(faTrashAlt);
+
+
+export const App = () => {
+  const router = createBrowserRouter([
+    {
+      path: "/",
+      element: <Main />,
+    },
+    {
+      path: "/todo",
+      element: <Main />,
+    },
+    {
+      path: "/*",
+      element: <h1>Page Not found!</h1>,
+    },
+  ]);
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <StoreProvider>
+      <Navbar />
+      <RouterProvider router={router}/>
+      <Footer />
+    </StoreProvider>
   );
-}
+};
 
 export default App;
