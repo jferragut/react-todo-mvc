@@ -6,17 +6,19 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 export const Main = props => {
 	const { store, addTodo, updateTodo, deleteTodo } = useStoreContext();
 	
-	const setDone = (index)=>{
-		let item = store[index];
-		item.done = true;
-		updateTodo(item);
-	}
+	const setDone = 
+		(index)=>{
+			let item = {...store[index]};
+			item.done = true;
+			updateTodo(index,item);
+		}
 	
-	const unsetDone = (index)=>{
-		let item = store[index];
-		item.done = false;
-		updateTodo(item);
-	}
+	const unsetDone = 
+		(index) => {
+			let item = { ...store[index] };
+			item.done = false;
+			updateTodo(index, item);
+		}
 
 	return (
 		<div className="container mt-5">

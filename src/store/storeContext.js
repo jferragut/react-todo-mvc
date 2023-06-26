@@ -22,15 +22,15 @@ function StoreProvider(props) {
 
   function updateTodo(index,item) {
     setStore((prevState) => {
-      const clone = { ...prevState };
+      const clone = [ ...prevState ];
       clone[index] = item;
       return clone;
     });
   }
 
   function deleteTodo(index) {
-    const clone = { ...store };
-    delete clone[index];
+    const clone = [ ...store ];
+    clone.splice(index,1);
     setStore(clone);
   }
 
